@@ -1,5 +1,5 @@
 #define ll long long int
-#define MOD 1000000007
+#define MOD 10000000007
 #include <bits/stdc++.h>
 using namespace std;
 class Solution{
