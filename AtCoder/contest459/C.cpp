@@ -1,42 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int main() {
-    int N, Q;
-    cin >> N >> Q;
-    vector<int> a(N, 0);
-    vector<int> freq(Q + 5, 0);
-    freq[0] = N;
-    int mini = 0;          
-    int minCnt = N;     
-    while(Q--) {
-        int type;
-        cin >> type;
-        if(type == 1) {
-            int x;
-            cin >> x;
-            x--;
-            int oldVal = a[x];
-            freq[oldVal]--;
-            a[x]++;
-            freq[a[x]]++;
-            if(oldVal == mini) {
-                minCnt--;
-            }
-            while(minCnt == 0) {
-                mini++;
-                minCnt = freq[mini];
+#define N 300005
+int main(){
+    vector<int> A(N+1,0);
+    vector<int> B(N+1,0);
+    int n,q,t,x;
+    int k = 0;
+    cin >> n >> q;
+    for(int i=0;i<q;i++){
+        cin >> t >> x;
+        if(t == 1){
+            A[x]++;
+            int val = A[x];
+            B[val]++;
+            if(B[val] == n){
+                k = val;
             }
         }
-        else {
-            int y;
-            cin >> y;
-            int need = mini + y;
-            int ans = 0;
-            for(int val = need; val <= Q + 2; val++) {
-                ans += freq[val];
+        else{
+            if(x+k > q){
+                cout << 0 << endl;
             }
-            cout << ans << '\n';
+            else{
+                cout << B[x+k] << endl;
+            }
         }
     }
     return 0;
