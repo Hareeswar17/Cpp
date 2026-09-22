@@ -80,7 +80,15 @@ int main()
     player.move();
 
     // Runtime polymorphism
-    GameObject *obj = &admin;
+    // Here &admin is just pointing to the address of the admin object created above 
+    GameObject* obj = &admin; // This is an example of upcasting 
+    // This one is creating a variable obj that can hold the address of a GameObject 
+    // It's type is admin*
+    // Here we are actually storing admin* in GameObject* this is allowed because admin is inherited from GameObject 
+    cout << sizeof(GameObject) << "\n";
+    // Here GameObject only contains string hance its memory is 32 bytes 
+    // Hidden ptr takes 8 bytes hence total size ius going to be 40 
+    // If we remove virtual it drops to 32 by this logic we can observe that vptr is being created 
     obj->update();
 
     return 0;
